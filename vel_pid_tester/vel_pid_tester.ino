@@ -1,3 +1,5 @@
+#include <PID_v1.h>
+
 #include <Encoder.h>
 
 #include <I2CEncoder.h>
