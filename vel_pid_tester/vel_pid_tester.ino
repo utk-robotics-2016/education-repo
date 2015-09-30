@@ -69,6 +69,10 @@ void setup() {
     encoders[0].setReversed(true);
 }
 
+/* listPos() will display the position via number of half rotation
+ * Note that the encoder returns a new position every half rotation
+ * so we divide by two to get the number of full rotation
+ */
 void listPos() {
   double pos = 0;
   encoders[0].zero();
