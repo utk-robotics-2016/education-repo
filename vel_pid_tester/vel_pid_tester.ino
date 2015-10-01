@@ -15,7 +15,7 @@ String args[MAX_ARGS];
 int numArgs = 0;
 
 // Pin definitions
-const char LED = 13;
+const char LED = 13; 
 
 // For motor driver:
 #define BRAKEVCC 0
@@ -75,13 +75,41 @@ void setup() {
  * Note that the encoder returns a new position every half rotation
  * so we divide by two to get the number of full rotation
  */
-void listPos() {
-  double pos = 0;
-  encoders[0].zero();
+double listPos() {
+  //double pos = 0;
+  return (double)encoders[0].getPosition()/2; //returns every half rotation
   
-  while (abs(pos) < 20.0) {
+  /*while (abs(pos) < 20.0) {
     pos = encoders[0].getPosition() / 2;
     Serial.println(pos);
+  }*/
+}
+
+void calcVel() {
+  encoders[0].zero();
+  long beginT, endT;
+  double beginPos, endPos;
+  double velocity;
+  beginT = millis();
+  beginPos = listPos();
+  endPos = listPos();
+  endT = millis();
+
+  while (true) {
+    beginT = millis();
+    //Serial.println(beginT);
+    beginPos = listPos();
+    delay(10);
+    endPos = listPos();
+    endT = millis();
+    /*Serial.println(endT);    
+    Serial.println(endT-beginT);
+    Serial.println(); */
+
+    //Serial.println(endPos - beginPos, 5);
+    Serial.println((endPos - beginPos)/(endT - beginT)*1000, 5);
+    //velocity = (endPos - beginPos)/(endT - beginT);
+    //Serial.println(velocity, 10);
   }
 }
 
@@ -250,7 +278,8 @@ void parseAndExecuteCommand(String command) {
 
             motorGo(mot, dir, speed);
             Serial.println("ok");
-            listPos();
+            //listPos();
+            calcVel();
         } else {
             Serial.println("error: usage - 'mod [0/1] [speed] [fw/bw]'");
         }
