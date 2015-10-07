@@ -86,7 +86,7 @@ double listPos() {
 }
 
 void calcVel() {
-  encoders[0].zero();
+  //encoders[0].zero();
   long beginT, endT;
   double beginPos, endPos;
   double velocity;
@@ -112,6 +112,10 @@ void calcVel() {
     //velocity = (endPos - beginPos)/(endT - beginT);
     //Serial.println(velocity, 10);
   }
+}
+
+void calcPID() {
+    
 }
 
 void motorOff(int motor)
