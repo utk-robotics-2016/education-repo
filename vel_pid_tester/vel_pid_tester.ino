@@ -92,6 +92,7 @@ void calcVel() {
   double velocity;
   beginT = millis();
   beginPos = listPos();
+  delay(10);
   endPos = listPos();
   endT = millis();
 
