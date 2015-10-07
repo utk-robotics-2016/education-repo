@@ -95,13 +95,13 @@ void calcVel() {
   endPos = listPos();
   endT = millis();
 
-  /*while (true) {
+   for(int i = 0; i < 25; i++) {
     beginT = millis();
     //Serial.println(beginT);
     beginPos = listPos();
     delay(10);
     endPos = listPos();
-    endT = millis();*/
+    endT = millis();
     /*Serial.println(endT);    
     Serial.println(endT-beginT);
     Serial.println(); */
@@ -110,7 +110,7 @@ void calcVel() {
     Serial.println((endPos - beginPos)/(endT - beginT)*1000, 5);
     //velocity = (endPos - beginPos)/(endT - beginT);
     //Serial.println(velocity, 10);
-  //}
+  }
 }
 
 void motorOff(int motor)
